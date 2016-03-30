@@ -1,0 +1,16 @@
+{
+  "title": "Clipboard Inserter",
+  "name": "clipboard-inserter",
+  "version": "0.0.1",
+  "description": "A simple addon whose purpose is to automatically insert contents of clipboard into the page",
+  "main": "index.js",
+  "author": "Yoitsumi",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}
