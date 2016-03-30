@@ -2,7 +2,7 @@
   "title": "Clipboard Inserter",
   "name": "clipboard-inserter",
   "version": "0.0.1",
-  "description": "A simple addon whose purpose is to automatically insert contents of clipboard into the page",
+  "description": "A simple addon whose purpose is to automatically insert contents of clipboard into the page. Uses icon made by Google from www.flaticon.com licensed by CC 3.0 BY",
   "main": "index.js",
   "author": "Yoitsumi",
   "engines": {
