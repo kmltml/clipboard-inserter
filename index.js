@@ -4,6 +4,7 @@ var buttons = require('sdk/ui/button/action');
 var tabs = require('sdk/tabs');
 var { ToggleButton } = require('sdk/ui/button/toggle')
 var timers = require('sdk/timers')
+var { prefs } = require('sdk/simple-prefs')
 
 var button = ToggleButton({
   id: "clipboard-inserter-btn",
@@ -53,7 +54,7 @@ function ClipboardMonitor() {
     if(clipboard.currentFlavors.indexOf('text') != -1) {
       var currentContent = clipboard.get('text/unicode')
       if(lastContent !== currentContent) {
-        this.worker.port.emit('insert', currentContent)
+        this.worker.port.emit('insert', currentContent, prefs)
         lastContent = currentContent
       }
     }
