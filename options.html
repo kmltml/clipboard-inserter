@@ -10,15 +10,18 @@
       <fieldset>
 	<div class="pure-control-group">
 	  <label for="elem-name">Element name </label>
-	  <input id="elem-name" type="text"/>
+	  <input id="elem-name" type="text"
+		 title="Element name used when inserting the clipboard contents"/>
 	</div>
 	<div class="pure-control-group">
 	  <label for="container-selector">Container selector </label>
-	  <input id="container-selector" type="text"/>
+	  <input id="container-selector" type="text"
+		 title="Css selector used to find element into which new elements will be inserted. Default value - 'body' - means that new elements will be appended at the end of the document."/>
 	</div>
 	<div class="pure-control-group">
 	  <label for="monitor-interval">Timer interval </label>
-	  <input id="monitor-interval" type="number" min="100" step="10"/>
+	  <input id="monitor-interval" type="number" min="100" step="10"
+		 title="Time (in milliseconds) between clipboard checks. Low values may cause performance problems."/>
 	</div>
       </fieldset>
     </form>
