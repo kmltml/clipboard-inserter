@@ -2,9 +2,9 @@
     const processMessage = msg => {
 	switch(msg.action) {
 	case "insert":
-	    const elem = document.createElement('p')
+	    const elem = document.createElement(msg.options.elemName)
 	    elem.textContent = msg.text
-	    document.querySelector("body").appendChild(elem)
+	    document.querySelector(msg.options.containerSelector).appendChild(elem)
 	    break
 	case "uninject":
 	    browser.runtime.onMessage.removeListener(processMessage)

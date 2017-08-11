@@ -9,7 +9,8 @@
 
     "permissions": [
 	"activeTab",
-	"clipboardRead"
+	"clipboardRead",
+	"storage"
     ],
 
     "browser_action": {
@@ -24,5 +25,9 @@
     
     "background": {
 	"page": "bg/index.html"
+    },
+
+    "options_ui": {
+	"page": "options.html"
     }
 }

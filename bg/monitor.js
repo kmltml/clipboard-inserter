@@ -3,6 +3,21 @@ console.log("I'm alive")
 let previousContent = ""
 let listeningTabs = []
 let timer = null
+let options = defaultOptions
+
+browser.storage.local.get(defaultOptions)
+    .then(o => options = o)
+
+browser.storage.onChanged.addListener((changes, area) => {
+    if(area === "local") {
+	const optionKeys = Object.keys(options)
+	for(key of Object.keys(changes)) {
+	    if(optionKeys.indexOf(key) >= 0) {
+		options[key] = changes[key].newValue
+	    }
+	}
+    }
+})
 
 browser.browserAction.onClicked.addListener(() => {
     browser.tabs.query({active: true})
@@ -20,14 +35,14 @@ function toggleTab(id) {
 	browser.tabs.executeScript({file: "/fg/insert.js"})
 	listeningTabs.push(id)
 	updateTimer()
-	browser.browserAction.setBadgeText({ text: "ON", tabId: id })
 	browser.browserAction.setBadgeBackgroundColor({ color: "green", tabId: id })
+	browser.browserAction.setBadgeText({ text: "ON", tabId: id })
     }
 }
 
 function notifyForeground(id, text) {
     browser.tabs.sendMessage(id, {
-	action: "insert", text
+	action: "insert", text, options
     })
 }
 
