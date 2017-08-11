@@ -1,4 +1,5 @@
 const defaultOptions = {
     elemName: 'p',
-    containerSelector: 'body'
+    containerSelector: 'body',
+    monitorInterval: 300
 }

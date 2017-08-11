@@ -16,6 +16,7 @@ browser.storage.onChanged.addListener((changes, area) => {
 		options[key] = changes[key].newValue
 	    }
 	}
+	updateTimer()
     }
 })
 
@@ -63,14 +64,22 @@ function checkClipboard() {
 }
 
 function updateTimer() {
+    function stop() {
+	clearInterval(timer.id)
+	timer = null
+    }
+    function start() {
+	const id = setInterval(checkClipboard, options.monitorInterval)
+	timer = { id, interval: options.monitorInterval }
+    }
     if(listeningTabs.length > 0) {
 	if(timer === null) {
-	    const id = setInterval(checkClipboard, 1000)
-	    timer = { id }
+	    start()
+	} else if(timer.interval !== options.monitorInterval) {
+	    stop()
+	    start()
 	}
     } else {
-	if(timer !== null) {
-	    clearInterval(timer.id)
-	}
+	stop()
     }
 }
