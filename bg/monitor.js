@@ -21,7 +21,7 @@ browser.storage.onChanged.addListener((changes, area) => {
 })
 
 browser.browserAction.onClicked.addListener(() => {
-    browser.tabs.query({active: true})
+    browser.tabs.query({ active: true, currentWindow: true })
 	.then(([t]) => toggleTab(t.id))
 })
 
