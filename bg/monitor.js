@@ -25,6 +25,14 @@ browser.browserAction.onClicked.addListener(() => {
 	.then(([t]) => toggleTab(t.id))
 })
 
+window.onload = () => {
+    document.querySelector("#paste-target").addEventListener("paste", e => {
+	if(e.clipboardData.getData("text/plain") === "") {
+	    e.preventDefault() // prevent anything that is not representable as plain text from being pasted
+	}
+    })
+}
+
 function toggleTab(id) {
     const index = listeningTabs.indexOf(id)
     if(index >= 0) {
@@ -57,7 +65,7 @@ function checkClipboard() {
     pasteTarget.focus()
     document.execCommand("paste")
     const content = pasteTarget.textContent
-    if(content != previousContent) {
+    if(content != previousContent && content != "") {
 	listeningTabs.forEach(id => notifyForeground(id, content))
 	previousContent = content
     }
