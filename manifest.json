@@ -7,6 +7,12 @@
 
     "icons": {},
 
+    "applications": {
+	"gecko": {
+	    "id": "@clipboard-inserter"
+	}
+    },
+    
     "permissions": [
 	"activeTab",
 	"clipboardRead",
