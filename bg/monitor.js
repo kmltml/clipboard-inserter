@@ -5,10 +5,10 @@ let listeningTabs = []
 let timer = null
 let options = defaultOptions
 
-browser.storage.local.get(defaultOptions)
-    .then(o => options = o)
+chrome.storage.local.get(defaultOptions,
+    o => options = o)
 
-browser.storage.onChanged.addListener((changes, area) => {
+chrome.storage.onChanged.addListener((changes, area) => {
     if(area === "local") {
 	const optionKeys = Object.keys(options)
 	for(key of Object.keys(changes)) {
@@ -20,9 +20,9 @@ browser.storage.onChanged.addListener((changes, area) => {
     }
 })
 
-browser.browserAction.onClicked.addListener(() => {
-    browser.tabs.query({ active: true, currentWindow: true })
-	.then(([t]) => toggleTab(t.id))
+chrome.browserAction.onClicked.addListener(() => {
+    chrome.tabs.query({ active: true, currentWindow: true },
+	([t]) => toggleTab(t.id))
 })
 
 window.onload = () => {
@@ -39,24 +39,24 @@ function toggleTab(id) {
 	uninject(id)
 	listeningTabs.splice(index, 1)
 	updateTimer()
-	browser.browserAction.setBadgeText({ text: "", tabId: id })
+	chrome.browserAction.setBadgeText({ text: "", tabId: id })
     } else {
-	browser.tabs.executeScript({file: "/fg/insert.js"})
+	chrome.tabs.executeScript({file: "/fg/insert.js"})
 	listeningTabs.push(id)
 	updateTimer()
-	browser.browserAction.setBadgeBackgroundColor({ color: "green", tabId: id })
-	browser.browserAction.setBadgeText({ text: "ON", tabId: id })
+	chrome.browserAction.setBadgeBackgroundColor({ color: "green", tabId: id })
+	chrome.browserAction.setBadgeText({ text: "ON", tabId: id })
     }
 }
 
 function notifyForeground(id, text) {
-    browser.tabs.sendMessage(id, {
+    chrome.tabs.sendMessage(id, {
 	action: "insert", text, options
     })
 }
 
 function uninject(id) {
-    browser.tabs.sendMessage(id, { action: "uninject" })
+    chrome.tabs.sendMessage(id, { action: "uninject" })
 }
 
 function checkClipboard() {

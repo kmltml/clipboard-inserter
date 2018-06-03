@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	  containerSelector = document.querySelector("#container-selector"),
 	  monitorInterval = document.querySelector("#monitor-interval")
 
-    const storage = browser.storage.local
+    const storage = chrome.storage.local
     
-    storage.get(defaultOptions).then(o => {
+    storage.get(defaultOptions, o => {
 	elemName.value = o.elemName
 	containerSelector.value = o.containerSelector
 	monitorInterval.value = o.monitorInterval

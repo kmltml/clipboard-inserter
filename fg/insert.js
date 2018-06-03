@@ -7,10 +7,10 @@
 	    document.querySelector(msg.options.containerSelector).appendChild(elem)
 	    break
 	case "uninject":
-	    browser.runtime.onMessage.removeListener(processMessage)
+	    chrome.runtime.onMessage.removeListener(processMessage)
 	    break
 	}    
     }
 
-    browser.runtime.onMessage.addListener(processMessage)
+    chrome.runtime.onMessage.addListener(processMessage)
 })()
