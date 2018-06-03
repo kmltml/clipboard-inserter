@@ -65,7 +65,7 @@ function checkClipboard() {
     pasteTarget.focus()
     document.execCommand("paste")
     const content = pasteTarget.textContent
-    if(content != previousContent && content != "") {
+    if(content.trim() !== previousContent.trim() && content != "") {
 	listeningTabs.forEach(id => notifyForeground(id, content))
 	previousContent = content
     }
