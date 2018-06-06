@@ -16,7 +16,8 @@
     "permissions": [
 	"activeTab",
 	"clipboardRead",
-	"storage"
+	"storage",
+	"file://*/*"
     ],
 
     "browser_action": {
