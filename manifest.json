@@ -3,7 +3,7 @@
     "name": "Clipboard Inserter",
     "version": "0.3.0",
 
-    "description": "A simple addon whose purpose is to automatically insert contents of clipboard into the page. Uses icon made by Google from www.flaticon.com licensed by CC 3.0 BY",
+    "description": "A simple addon that inserts clipboard contents into the page. Uses icon made by Google from www.flaticon.com licensed by CC 3.0 BY",
 
     "icons": {},
 
