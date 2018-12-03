@@ -61,10 +61,10 @@ function uninject(id) {
 
 function checkClipboard() {
     const pasteTarget = document.querySelector("#paste-target")
-    pasteTarget.textContent = ""
+    pasteTarget.innerText = ""
     pasteTarget.focus()
     document.execCommand("paste")
-    const content = pasteTarget.textContent
+    const content = pasteTarget.innerText
     if(content.trim() !== previousContent.trim() && content != "") {
 	listeningTabs.forEach(id => notifyForeground(id, content))
 	previousContent = content
