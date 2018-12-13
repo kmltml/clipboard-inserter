@@ -3,7 +3,7 @@
 	switch(msg.action) {
 	case "insert":
 	    const elem = document.createElement(msg.options.elemName)
-	    elem.textContent = msg.text
+	    elem.innerText = msg.text
 	    document.querySelector(msg.options.containerSelector).appendChild(elem)
 	    break
 	case "uninject":
