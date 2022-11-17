@@ -60,15 +60,15 @@ function uninject(id) {
 }
 
 function checkClipboard() {
-    const pasteTarget = document.querySelector("#paste-target")
-    pasteTarget.innerText = ""
-    pasteTarget.focus()
-    document.execCommand("paste")
-    const content = pasteTarget.innerText
-    if(content.trim() !== previousContent.trim() && content != "") {
-	listeningTabs.forEach(id => notifyForeground(id, content))
-	previousContent = content
-    }
+    navigator.clipboard.readText().then((clipText) => {
+        const pasteTarget = document.querySelector("#paste-target")
+        pasteTarget.innerText = clipText
+
+        if (clipText.trim() !== previousContent.trim() && clipText != "") {
+            listeningTabs.forEach(id => notifyForeground(id, clipText))
+            previousContent = clipText
+        }
+    });
 }
 
 function updateTimer() {
